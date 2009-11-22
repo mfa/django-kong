@@ -5,6 +5,11 @@ from django.contrib.localflavor.us import models as USmodels
 import datetime
 import urlparse
 
+from django.conf import settings
+# default for pythonpath:
+KONG_PYTHONPATH_DEFAULT = getattr(settings, 'KONG_PYTHONPATH_DEFAULT', 
+                                  "/home/code.django-1.0")
+
 #(HACK) http://code.djangoproject.com/ticket/897
 class ManyToManyField_NoSyncdb(models.ManyToManyField):
     def __init__(self, *args, **kwargs):
@@ -32,7 +37,7 @@ class Site(models.Model):
 
     settings = models.CharField(max_length=80)
     pythonpath = models.CharField(max_length=255,
-                                  default="/home/code.django-1.0")
+                                  default=KONG_PYTHONPATH_DEFAULT)
     #aliases = models.ForeignKey('Alias')
     is_live = models.BooleanField(default=False)
 
