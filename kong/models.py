@@ -113,6 +113,8 @@ class Test(models.Model):
     def get_absolute_url(self):
         return ('kong_testresults_detail', [self.slug])
 
+    def sites_list(self):
+        return ",".join([i.hostedsite.servername for i in self.sites.all()])
 
 class TestResult(models.Model):
     test = models.ForeignKey(Test, related_name='test_results')

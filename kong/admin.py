@@ -25,6 +25,7 @@ class SiteAdmin(admin.ModelAdmin):
 class TestAdmin(admin.ModelAdmin):
     search_fields = ('site', 'test')
     prepopulated_fields = {"slug": ("name",)}
+    list_display = ('name', 'sites_list', )
     ordering = [('name'),]
     save_as = True
 
