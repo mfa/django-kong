@@ -32,6 +32,7 @@ class HostedSiteAdmin(SiteAdmin):
     search_fields = ('servername',)
     list_display = ('servername', 'slug', 'type', 'client')
     prepopulated_fields = {"slug": ("name",)}
+    ordering = [('servername'),]
 
 class ServerAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
