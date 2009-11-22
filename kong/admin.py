@@ -32,7 +32,8 @@ class TestAdmin(admin.ModelAdmin):
 
 class HostedSiteAdmin(SiteAdmin):
     search_fields = ('servername',)
-    list_display = ('servername', 'slug', 'type', 'client')
+    list_display = ('servername', 'slug', 'type', 'client', 'settings', 
+                    'pythonpath')
     prepopulated_fields = {"slug": ("name",)}
     ordering = [('servername'),]
 
