@@ -23,6 +23,9 @@ class Client(models.Model):
     email = models.EmailField(blank=True)
     contact = models.CharField(max_length=100, blank=True)
 
+    class Meta:
+        ordering = ['name']
+
     def __unicode__(self):
         if self.name:
             return self.name
@@ -70,6 +73,9 @@ class HostedSite(Site):
     serveradmin = models.CharField(max_length=100, null=True, blank=True)
     mediaserver = models.CharField(max_length=100, null=True, blank=True)
 
+    class Meta:
+        ordering = ['servername']
+
     def __unicode__(self):
         return self.servername
 
@@ -83,6 +89,9 @@ class Server(models.Model):
     internalip = models.IPAddressField(null=True, blank=True)
     externalip = models.IPAddressField(null=True, blank=True)
 
+    class Meta:
+        ordering = ['name']
+
     def __unicode__(self):
         return self.hostname
 
@@ -94,6 +103,10 @@ class Server(models.Model):
 class Type(models.Model):
     name = models.CharField(max_length=40)
     slug = models.SlugField(blank=True)
+
+    class Meta:
+        ordering = ['name']
+    
 
     def __unicode__(self):
         return self.name
@@ -107,6 +120,9 @@ class Test(models.Model):
     sites = models.ManyToManyField(Site, blank=True, null=True, related_name='tests')
     types = models.ManyToManyField(Type, blank=True, null=True, related_name='tests')
     body = models.TextField()
+
+    class Meta:
+    	ordering = ['name']
 
     def __unicode__(self):
         return self.name

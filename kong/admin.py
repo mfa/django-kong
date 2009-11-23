@@ -15,7 +15,6 @@ class DeployTargetAdmin(admin.ModelAdmin):
 
 class ClientAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
-    ordering = [('name'),]
     inlines = [
         HostedSiteInline,
     ]
@@ -27,7 +26,6 @@ class TestAdmin(admin.ModelAdmin):
     search_fields = ('site', 'test')
     prepopulated_fields = {"slug": ("name",)}
     list_display = ('name', 'sites_list', )
-    ordering = [('name'),]
     save_as = True
 
 class HostedSiteAdmin(SiteAdmin):
@@ -35,16 +33,13 @@ class HostedSiteAdmin(SiteAdmin):
     list_display = ('servername', 'slug', 'type', 'client', 'settings', 
                     'pythonpath')
     prepopulated_fields = {"slug": ("name",)}
-    ordering = [('servername'),]
 
 class ServerAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
-    ordering = [('hostname'),]
 
 class TypeAdmin(admin.ModelAdmin):
     search_fields = ('slug', 'name')
     prepopulated_fields = {"slug": ("name",)}
-    ordering = [('name'),]
     inlines = [
         HostedSiteInline,
     ]
